@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageCardComponent } from './page-card/page-card.component';
+import { PageListComponent } from './page-list/page-list.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '', component: PageListComponent, children: [
+      { path: 'card', component: PageCardComponent }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
