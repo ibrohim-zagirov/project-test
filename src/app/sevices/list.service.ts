@@ -6,7 +6,7 @@ import { SortingIntrface } from "../types/sorting.intrface";
 @Injectable()
 export class ListService {
     constructor(private http: HttpClient) { }
-    getList(user: SortingIntrface): Observable<any> {
+    getList(): Observable<any> {
         return this.http.get('https://jsonplaceholder.typicode.com/users')
     }
 
