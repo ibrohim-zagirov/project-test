@@ -11,7 +11,7 @@ export class ListService {
     }
 
     getById(id: string): Observable<any> {
-        return this.http.get(`${'https://jsonplaceholder.typicode.com/users'}/card/${id}.json`)
+        return this.http.get<SortingIntrface>(`${'https://jsonplaceholder.typicode.com/users'}/card/${id}.json`)
             .pipe(map((user: SortingIntrface) => {
                 return
                 ...user, id,
