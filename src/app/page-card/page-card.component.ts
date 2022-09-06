@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ListService } from '../sevices/list.service';
+import { SortingIntrface } from '../types/sorting.intrface';
 
 @Component({
   selector: 'app-page-card',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private listservice: ListService, private route: ActivatedRoute) { }
+  cardList!: SortingIntrface[]
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => { })
   }
 
 }

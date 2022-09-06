@@ -1,5 +1,9 @@
 .nameList {
     padding-top: 64px;
+
+    button {
+        font-size: 20px;
+    }
 }
 
 .list {
@@ -7,7 +11,7 @@
     display: flex;
     padding-top: 34px !important;
 
-    p {
+    small {
         margin: 0px 70px 0px 0px;
     }
 }

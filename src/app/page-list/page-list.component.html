@@ -1,24 +1,30 @@
-<router-outlet></router-outlet>
+<app-page-card [title]="lstList"></app-page-card>
 <div>
     <div class="container">
         <h1>SpaceX Ships</h1>
-        <div *ngFor="let list of lstList" class="nameList [value]=list.id">
-            <a href=""> Go Ms Chief</a>
-            <i><img src="/src/assets/svg/icon.svg" /></i>
+        <div *ngFor="let list of lstList" class="nameList" value="list.id">
+            <button [routerLink]="['/card']">{{list.name}}</button>
             <div class="list">
-                <p>Тир</p>
-                <p><a href="#">{{list.id}}</a></p>
-                <p>Порт</p>
-                <p><a href="#">{{list.title}}</a></p>
+                <small> Фамилия</small>
+                <small><a href="#">{{list.username}}</a></small>
+                <small>Почта</small>
+                <small><a href="#">{{list.email}}</a></small>
             </div>
             <hr>
         </div>
     </div>
-    <div *ngFor="let list of lstList">
+    <!-- <div>
         <h2>Фильтры</h2>
-        <input type="checkbox" name="{{list.id}}" [value]="list.id">{{list.title}}
         <input type="text">
-        <p>тип</p>
-        <input type="text">
-    </div>
+        <div *ngFor="let list of lstList">
+            <input type="checkbox" name="{{list.address.street}}" [value]="list.address.street">{{list.address.street}}
+        </div>
+        <div>
+            <h2>тип</h2>
+            <div *ngFor="let list of lstList">
+                <input type="checkbox" name="{{list.email}}" [value]="list.email">{{list.email}}
+            </div>
+        </div>
+    </div> -->
 </div>
+<!-- <i><img src="/src/assets/svg/icon.svg" /></i> -->
