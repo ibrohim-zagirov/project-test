@@ -25,6 +25,7 @@ export class PageCardComponent implements OnInit {
       this.cardUser = user
 
 
+
     })
   }
 }
