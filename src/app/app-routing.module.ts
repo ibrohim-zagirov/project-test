@@ -5,7 +5,7 @@ import { PageListComponent } from './page-list/page-list.component';
 
 const routes: Routes = [
   { path: '', component: PageListComponent },
-  { path: 'card/id', component: PageCardComponent }
+  { path: 'card/:id', component: PageCardComponent }
 ];
 
 @NgModule({

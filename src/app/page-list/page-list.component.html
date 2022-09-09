@@ -3,7 +3,7 @@
     <div class="container">
         <h1>SpaceX Ships</h1>
         <div *ngFor="let list of lstList" class="nameList" value="list.id">
-            <button [routerLink]="['/card']">{{list.name}}</button>
+            <button [routerLink]="['/card/:id']">{{list.name}}</button>
             <div class="list">
                 <small> Фамилия</small>
                 <small><a href="#">{{list.username}}</a></small>
