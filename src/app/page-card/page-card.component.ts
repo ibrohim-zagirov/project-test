@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { ListService } from '../sevices/list.service';
-import { SortingIntrface, User } from '../types/sorting.intrface';
+import { User } from '../types/sorting.Interface';
 
 @Component({
   selector: 'app-page-card',
@@ -10,22 +10,18 @@ import { SortingIntrface, User } from '../types/sorting.intrface';
   styleUrls: ['./page-card.component.scss']
 })
 export class PageCardComponent implements OnInit {
+  cardUser: User | undefined
 
-  constructor(private listservice: ListService, private route: ActivatedRoute) { }
-  cardUser: User[] = []
+  constructor(
+    private readonly listService: ListService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.route.params.pipe(
-      switchMap((params: Params) => {
-
-        console.log('params', params)
-        return this.listservice.getById(params['id'])
-      })
-    ).subscribe((user: User[]) => {
+      switchMap((params: Params) => this.listService.getById(params['id']))
+    ).subscribe((user: User) => {
       this.cardUser = user
-
-
-
     })
   }
 }

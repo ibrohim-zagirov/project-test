@@ -1,4 +1,4 @@
-export interface SortingIntrface {
+export interface SortingInterface {
     id: number,
     name: string,
     username: string,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../sevices/list.service';
-import { SortingIntrface } from '../types/sorting.intrface';
+import { SortingInterface } from '../types/sorting.Interface';
 
 @Component({
   selector: 'app-page-list',
@@ -10,15 +9,15 @@ import { SortingIntrface } from '../types/sorting.intrface';
 })
 export class PageListComponent implements OnInit {
 
-  constructor(private listservice: ListService, private route: ActivatedRoute) {
+  constructor(private readonly listService: ListService) {
 
   }
-  lstList!: SortingIntrface[]
+  lstList!: SortingInterface[]
   showList?: string
 
 
   ngOnInit(): void {
-    this.listservice.getList().subscribe(data => { this.lstList = data })
+    this.listService.getList().subscribe(data => { this.lstList = data })
   }
 
 }
