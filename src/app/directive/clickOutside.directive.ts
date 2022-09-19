@@ -6,7 +6,8 @@ import { filter, fromEvent, Subscription } from "rxjs";
     selector: '[clickOutside]'
 })
 export class ClickOutsidedirective implements AfterViewInit, OnDestroy {
-    @Output() clickOutside = new EventEmitter<void>
+    @Output()
+    clickOutside = new EventEmitter<void>()
 
     documentClickSubscription: Subscription | undefined
     constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) { }
