@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { SortingInterface } from "../types/sorting.intrface";
+import { SortingInterface } from "../types/sorting.Interface";
 
 @Pipe({
     name: 'searchPosts'

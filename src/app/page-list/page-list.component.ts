@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { flush } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../sevices/list.service';
-import { SortingInterface } from '../types/sorting.intrface';
-=======
-import { Component, OnInit } from '@angular/core';
-import { ListService } from '../sevices/list.service';
 import { SortingInterface } from '../types/sorting.Interface';
->>>>>>> c280e5dc5fb558b23a7962544d18fa6ba3d63fc5
 
 @Component({
   selector: 'app-page-list',
@@ -18,10 +12,9 @@ import { SortingInterface } from '../types/sorting.Interface';
 })
 export class PageListComponent implements OnInit {
 
-  constructor(private readonly listService: ListService) {
+  constructor(private listservice: ListService, private route: ActivatedRoute) {
 
   }
-<<<<<<< HEAD
   pageList!: SortingInterface[]
   searchStr = ''
   usernameControl!: FormControl
@@ -37,16 +30,12 @@ export class PageListComponent implements OnInit {
     )
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpeden = !this.isMenuOpeden
-=======
-  lstList!: SortingInterface[]
-  showList?: string
+  }
 
-
-  ngOnInit(): void {
-    this.listService.getList().subscribe(data => { this.lstList = data })
->>>>>>> c280e5dc5fb558b23a7962544d18fa6ba3d63fc5
+  clickOutside() {
+    this.isMenuOpeden = false
   }
 
 }

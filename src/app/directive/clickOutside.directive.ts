@@ -1,17 +1,26 @@
 import { DOCUMENT } from "@angular/common";
-import { AfterViewInit, Directive, ElementRef, Inject } from "@angular/core";
-import { filter, fromEvent } from "rxjs";
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, OnDestroy, Output } from "@angular/core";
+import { filter, fromEvent, Subscription } from "rxjs";
 
 @Directive({
     selector: '[clickOutside]'
 })
-export class ClickOutsidedirective implements AfterViewInit {
+export class ClickOutsidedirective implements AfterViewInit, OnDestroy {
+    @Output() clickOutside = new EventEmitter<void>
+
+    documentClickSubscription: Subscription | undefined
     constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) { }
 
     ngAfterViewInit(): void {
-        fromEvent(this.document, 'click').pipe(filter(event) => {
+        this.documentClickSubscription = fromEvent(this.document, 'click').pipe(filter((event) => {
             return !this.isInside(event?.target as HTMLElement)
+        })).subscribe(() => {
+            this.clickOutside.emit()
         })
+    }
+
+    ngOnDestroy(): void {
+        this.documentClickSubscription?.unsubscribe()
     }
 
     isInside(elementToCheck: HTMLElement): boolean {
