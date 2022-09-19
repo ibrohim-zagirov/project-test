@@ -1,9 +1,35 @@
+.header {
+    padding-top: 10px;
+
+    img {
+        width: 13px;
+    }
+}
+
 .card {
+
     button {
         color: #2962FF;
         font-size: 14px;
     }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+
+
+        .infoUser {
+            padding-top: 40px;
+        }
+
+        small {
+            font-size: 20px;
+            padding-right: 150px;
+        }
+
+    }
 }
+
 
 // background-color: 0;
 // border: none;

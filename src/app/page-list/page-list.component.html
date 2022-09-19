@@ -1,30 +1,38 @@
-<app-page-card [title]="lstList"></app-page-card>
-<div>
+<div class="bloc">
     <div class="container">
         <h1>SpaceX Ships</h1>
-        <div *ngFor="let list of lstList" class="nameList" value="list.id">
-            <button [routerLink]="['/card/:id']">{{list.name}}</button>
+        <div *ngFor="let list of pageList | searchPosts: searchStr; let idx = index" class="nameList">
+            <button [routerLink]="['/card', list.id]">{{list.name}} <img src="/assets/svg/icon.svg" /></button>
             <div class="list">
-                <small> Фамилия</small>
+                <small>Фамилия:</small>
                 <small><a href="#">{{list.username}}</a></small>
-                <small>Почта</small>
+                <small>Почта:</small>
                 <small><a href="#">{{list.email}}</a></small>
             </div>
             <hr>
         </div>
     </div>
-    <!-- <div>
-        <h2>Фильтры</h2>
-        <input type="text">
-        <div *ngFor="let list of lstList">
-            <input type="checkbox" name="{{list.address.street}}" [value]="list.address.street">{{list.address.street}}
-        </div>
-        <div>
-            <h2>тип</h2>
-            <div *ngFor="let list of lstList">
-                <input type="checkbox" name="{{list.email}}" [value]="list.email">{{list.email}}
-            </div>
-        </div>
-    </div> -->
 </div>
-<!-- <i><img src="/src/assets/svg/icon.svg" /></i> -->
+
+<form class="form">
+    <h2>Фильтры</h2>
+    <div class="form_grup">
+        <label class="form_label">Название</label>
+        <input class="form_input" type="text" [(ngModel)]="searchStr" name="searchStr">
+    </div>
+    <div class="form_grup" (clickOutside)="clickOutside()">
+        <label class="form_label">Название</label>
+        <input (click)="toggleMenu()" class="form_input" type="text" [formControl]="usernameControl">
+        <div *ngIf="isMenuOpeden" class="popuplist">
+            <small *ngFor="let list of pageList">
+                <input type="checkbox">{{list.username}}
+            </small>
+        </div>
+    </div>
+    <div>
+        <h2>тип</h2>
+        <div>
+            <input type="checkbox" name="" [value]="">
+        </div>
+    </div>
+</form>

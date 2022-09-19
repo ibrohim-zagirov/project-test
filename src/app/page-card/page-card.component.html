@@ -1,17 +1,21 @@
 <div class="card">
-    <div class="header">
-        <button routerLink=""><img src="/src/assets/svg/icon.svg" />Вернутся </button>
-        <h1></h1>
-    </div>
-    <div class="info">
-        <div>
-            <small>{{cardUser }}</small>
-            <small></small>
+    <div class="container">
+        <div class="header">
+            <button routerLink=""><img src="/assets/svg/iconexit.svg" />Вернутся </button>
+            <h1>Карточка Usera</h1>
         </div>
-        <div>Ч <small>Квартиар</small>
-            <small>год рождение</small>
+
+        <div class="info">
+            <div class="infoUser">
+                <small>Имя: <a href="#">{{cardUser?.name}}</a></small>
+                <small>Фамилия: <a href="#">{{cardUser?.username}}</a></small>
+            </div>
+            <div class="infoUser">
+                <small>Город: <a href="#">{{cardUser?.address?.city}}</a></small>
+                <small>Улица: <a href="#">{{cardUser?.address?.street}}</a></small>
+            </div>
+            <small class="infoUser">Квартира: <a href="#">{{cardUser?.address?.suite}}</a></small>
+
         </div>
-        <small>Миссия</small>
-        <small></small>
     </div>
 </div>

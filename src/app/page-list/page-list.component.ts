@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { flush } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../sevices/list.service';
-import { SortingIntrface } from '../types/sorting.intrface';
+import { SortingInterface } from '../types/sorting.intrface';
 
 @Component({
   selector: 'app-page-list',
@@ -13,12 +15,23 @@ export class PageListComponent implements OnInit {
   constructor(private listservice: ListService, private route: ActivatedRoute) {
 
   }
-  lstList!: SortingIntrface[]
-  showList?: string
+  pageList!: SortingInterface[]
+  searchStr = ''
+  usernameControl!: FormControl
+
+  isMenuOpeden: boolean = false
 
 
   ngOnInit(): void {
-    this.listservice.getList().subscribe(data => { this.lstList = data })
+    this.listservice.getList().subscribe(data => { this.pageList = data })
+
+    this.usernameControl = new FormControl('')
+    this.usernameControl.valueChanges.subscribe((value) => console.log(value)
+    )
+  }
+
+  toggleMenu() {
+    this.isMenuOpeden = !this.isMenuOpeden
   }
 
 }
