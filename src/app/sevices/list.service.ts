@@ -1,11 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
-<<<<<<< HEAD
-import { SortingInterface, User } from "../types/sorting.intrface";
-=======
 import { SortingInterface, User } from "../types/sorting.Interface";
->>>>>>> c280e5dc5fb558b23a7962544d18fa6ba3d63fc5
 
 @Injectable()
 export class ListService {
@@ -21,16 +17,9 @@ export class ListService {
                 return {
                     ...user,
                     id,
-<<<<<<< HEAD
-                }
-            }))
-    }
-}
-=======
                 };
             }
-          ))
+            ))
     }
 }
 
->>>>>>> c280e5dc5fb558b23a7962544d18fa6ba3d63fc5
