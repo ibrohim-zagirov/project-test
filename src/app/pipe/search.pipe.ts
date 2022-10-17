@@ -9,7 +9,7 @@ export class SearchPipe implements PipeTransform {
         if (!search.trim()) {
             return users
         }
-        return users.filter(users => {
+        return users?.filter(users => {
             return users.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
         })
     }

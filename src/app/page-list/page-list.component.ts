@@ -20,13 +20,20 @@ export class PageListComponent implements OnInit {
   pageList!: SortingInterface[]
   searchStr = ''
   isMenuOpeden: boolean = false
-  currentВataa = ''
+  currentВataa = 0
+  userscount = 0
 
 
   ngOnInit(): void {
     this.listservice.getList().subscribe(data => { this.pageList = data })
+    this.usernameControl.valueChanges.subscribe(checked => {
 
-    this.usernameControl = new FormControl('')
+      if (checked) {
+        this.userscount++
+      } else if (this.userscount > 0) {
+        this.userscount--
+      }
+    })
   }
   currentВata() {
     this.usernameControl.setValue("new value")
