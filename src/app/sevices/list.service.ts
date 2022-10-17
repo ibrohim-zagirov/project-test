@@ -22,7 +22,3 @@ export class ListService {
             ))
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 8ac5b7a924c4c48ae40426b38118275ab625b53a

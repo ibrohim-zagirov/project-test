@@ -12,22 +12,24 @@ import { SortingInterface } from '../types/sorting.Interface';
 })
 export class PageListComponent implements OnInit {
 
-  constructor(private listservice: ListService, private route: ActivatedRoute) {
-
-  }
+  constructor(
+    private listservice: ListService,
+    private route: ActivatedRoute
+  ) { }
+  usernameControl: FormControl = new FormControl('')
   pageList!: SortingInterface[]
   searchStr = ''
-  usernameControl!: FormControl
-
   isMenuOpeden: boolean = false
+  currentВataa = ''
 
 
   ngOnInit(): void {
     this.listservice.getList().subscribe(data => { this.pageList = data })
 
     this.usernameControl = new FormControl('')
-    this.usernameControl.valueChanges.subscribe((value) => console.log(value)
-    )
+  }
+  currentВata() {
+    this.usernameControl.setValue("new value")
   }
 
   toggleMenu(): void {
