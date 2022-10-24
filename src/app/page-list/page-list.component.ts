@@ -1,9 +1,8 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { flush } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../sevices/list.service';
-import { SortingInterface } from '../types/sorting.Interface';
+import { SortingInterface, User } from '../types/sorting.Interface';
 
 @Component({
   selector: 'app-page-list',
@@ -22,21 +21,26 @@ export class PageListComponent implements OnInit {
   isMenuOpeden: boolean = false
   currentВataa = 0
   userscount = 0
+  users: any = []
+  tempArray: any = []
+  dataArray: any = []
 
 
   ngOnInit(): void {
+    this.listservice.getList().subscribe(users => {
+      this.users = users
+      console.log(this.users)
+    })
+
     this.listservice.getList().subscribe(data => { this.pageList = data })
     this.usernameControl.valueChanges.subscribe(checked => {
-
       if (checked) {
         this.userscount++
       } else if (this.userscount > 0) {
         this.userscount--
       }
     })
-  }
-  currentВata() {
-    this.usernameControl.setValue("new value")
+
   }
 
   toggleMenu(): void {
@@ -45,6 +49,19 @@ export class PageListComponent implements OnInit {
 
   clickOutside() {
     this.isMenuOpeden = false
+  }
+
+
+  onChange(event: any, id: number) {
+    console.log();
+
+    if (event.target.checked) {
+      this.tempArray = this.users.filter((e: any) => e.id == id)
+    }
+    else {
+
+    }
+
   }
 
 }

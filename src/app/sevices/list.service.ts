@@ -13,7 +13,6 @@ export class ListService {
     getById(id: string): Observable<any> {
         return this.http.get<User>(`${'https://jsonplaceholder.typicode.com/users'}/${id}`)
             .pipe(map((user: User) => {
-                console.log('user', user);
                 return {
                     ...user,
                     id,
@@ -21,4 +20,5 @@ export class ListService {
             }
             ))
     }
+
 }

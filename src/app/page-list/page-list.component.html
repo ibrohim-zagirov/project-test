@@ -21,13 +21,8 @@
         </div>
         <div class="form_grup" (clickOutside)="clickOutside()">
             <label class="form_label">Название</label>
-            <input
-              (click)="toggleMenu()"
-              class="form_input"
-              type="text"
-              [(ngModel)]="userscount"
-              [ngModelOptions]="{standalone: true}"
-            />
+            <input (click)="toggleMenu()" class="form_input" type="text" [(ngModel)]="userscount"
+                [ngModelOptions]="{standalone: true}" />
             <div *ngIf="isMenuOpeden" class="popuplist">
                 <small *ngFor="let list of pageList">
                     <input [formControl]="usernameControl" type="checkbox">{{list.username}}
@@ -36,9 +31,10 @@
         </div>
         <div>
             <h2>тип</h2>
-            <div>
-                <input type="checkbox" name="" [value]="">
+            <div *ngFor="let  user of pageList">
+                <input type="checkbox" value="" (change)="onChange($event, user.id)"> {{user.name}}
             </div>
+
         </div>
     </form>
 </div>

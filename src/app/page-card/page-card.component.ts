@@ -23,5 +23,6 @@ export class PageCardComponent implements OnInit {
     ).subscribe((user: User) => {
       this.cardUser = user
     })
+
   }
 }
