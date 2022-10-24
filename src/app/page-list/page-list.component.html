@@ -1,7 +1,8 @@
 <div class="bloc">
     <div class="container">
         <h1>SpaceX Ships</h1>
-        <div *ngFor="let list of filteredUsers$ | async | searchPosts: searchStr; let idx = index" class="nameList">
+        <div *ngFor="let list of filteredUsers$ | async | searchPosts: searchStr| paginate: { itemsPerPage: 3, currentPage: p } let idx = index"
+            class="nameList">
             <button [routerLink]="['/card', list.id]">{{list.name}} <img src="/assets/svg/icon.svg" /></button>
             <div class="list">
                 <small>Фамилия:</small>
@@ -11,6 +12,7 @@
             </div>
             <hr>
         </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 
     <form class="form">

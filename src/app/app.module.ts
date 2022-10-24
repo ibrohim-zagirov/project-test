@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListService } from './sevices/list.service';
 import { SearchPipe } from './pipe/search.pipe';
 import { ClickOutsidedirective } from './directive/clickOutside.directive';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ClickOutsidedirective } from './directive/clickOutside.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [ListService],
   bootstrap: [AppComponent]

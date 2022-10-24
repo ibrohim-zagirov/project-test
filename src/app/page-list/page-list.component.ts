@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ListService } from '../sevices/list.service';
 import { BehaviorSubject, map, Observable, switchMap } from "rxjs";
-import {User} from "../types/sorting.Interface";
+import { User } from "../types/sorting.Interface";
 
 @Component({
   selector: 'app-page-list',
@@ -10,6 +10,7 @@ import {User} from "../types/sorting.Interface";
   styleUrls: ['./page-list.component.scss']
 })
 export class PageListComponent implements OnInit {
+  public p: number = 1
   public users$: Observable<User[]> = this.listService.getUsers();
   private selectedUsersIds$ = new BehaviorSubject<number[]>([]);
   public filteredUsers$: Observable<User[]> = this.selectedUsersIds$.pipe(
