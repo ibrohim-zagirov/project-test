@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../sevices/list.service';
-import { SortingInterface, User } from '../types/sorting.Interface';
+import { BehaviorSubject, map, Observable, switchMap } from "rxjs";
+import {User} from "../types/sorting.Interface";
 
 @Component({
   selector: 'app-page-list',
@@ -10,58 +10,51 @@ import { SortingInterface, User } from '../types/sorting.Interface';
   styleUrls: ['./page-list.component.scss']
 })
 export class PageListComponent implements OnInit {
+  public users$ = this.listService.getUsers();
+  private selectedUsersIds$ = new BehaviorSubject<number[]>([]);
+  public filteredUsers$: Observable<User[]> = this.selectedUsersIds$.pipe(
+    switchMap((selectedUserIds) =>
+      this.users$.pipe(
+        map((users) => selectedUserIds.length
+          ? users.filter(
+            (user) => selectedUserIds.includes(user.id)
+          )
+          : users
+        )
+      )
+    )
+  )
+  public usernameControl = new FormControl('')
+  public searchStr = ''
+  public isMenuOpened = false
+  public usersCount = 0
 
-  constructor(
-    private listservice: ListService,
-    private route: ActivatedRoute
-  ) { }
-  usernameControl: FormControl = new FormControl('')
-  pageList!: SortingInterface[]
-  searchStr = ''
-  isMenuOpeden: boolean = false
-  currentВataa = 0
-  userscount = 0
-  users: any = []
-  tempArray: any = []
-  dataArray: any = []
-
+  constructor(private listService: ListService) { }
 
   ngOnInit(): void {
-    this.listservice.getList().subscribe(users => {
-      this.users = users
-      console.log(this.users)
-    })
-
-    this.listservice.getList().subscribe(data => { this.pageList = data })
     this.usernameControl.valueChanges.subscribe(checked => {
       if (checked) {
-        this.userscount++
-      } else if (this.userscount > 0) {
-        this.userscount--
+        this.usersCount++
+      } else if (this.usersCount > 0) {
+        this.usersCount--
       }
     })
-
   }
 
   toggleMenu(): void {
-    this.isMenuOpeden = !this.isMenuOpeden
+    this.isMenuOpened = !this.isMenuOpened
   }
 
-  clickOutside() {
-    this.isMenuOpeden = false
+  clickOutside(): void {
+    this.isMenuOpened = false
   }
-
 
   onChange(event: any, id: number) {
-    console.log();
-
-    if (event.target.checked) {
-      this.tempArray = this.users.filter((e: any) => e.id == id)
-    }
-    else {
-
-    }
-
+    this.selectedUsersIds$.next(
+      event.target.checked
+        ? [...this.selectedUsersIds$.value, id]
+        : this.selectedUsersIds$.value.filter(selectedId => selectedId !== id)
+    )
   }
 
 }

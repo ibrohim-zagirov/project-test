@@ -18,7 +18,6 @@ import { ClickOutsidedirective } from './directive/clickOutside.directive';
     PageCardComponent,
     SearchPipe,
     ClickOutsidedirective
-
   ],
   imports: [
     BrowserModule,
