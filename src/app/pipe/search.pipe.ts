@@ -1,11 +1,15 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { SortingInterface } from "../types/sorting.Interface";
+import { User } from "../types/sorting.Interface";
 
 @Pipe({
     name: 'searchPosts'
 })
 export class SearchPipe implements PipeTransform {
-    transform(users: SortingInterface[], search = ''): SortingInterface[] {
+    transform(users: User[] | null, search = ''): User[] {
+      if (!users) {
+        return []
+      }
+
         if (!search.trim()) {
             return users
         }

@@ -10,7 +10,7 @@ import {User} from "../types/sorting.Interface";
   styleUrls: ['./page-list.component.scss']
 })
 export class PageListComponent implements OnInit {
-  public users$ = this.listService.getUsers();
+  public users$: Observable<User[]> = this.listService.getUsers();
   private selectedUsersIds$ = new BehaviorSubject<number[]>([]);
   public filteredUsers$: Observable<User[]> = this.selectedUsersIds$.pipe(
     switchMap((selectedUserIds) =>
