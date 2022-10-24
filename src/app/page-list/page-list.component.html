@@ -1,7 +1,7 @@
 <div class="bloc">
     <div class="container">
         <h1>SpaceX Ships</h1>
-        <div *ngFor="let list of pageList | searchPosts: searchStr; let idx = index" class="nameList">
+        <div *ngFor="let list of filteredUsers$ | async | searchPosts: searchStr; let idx = index" class="nameList">
             <button [routerLink]="['/card', list.id]">{{list.name}} <img src="/assets/svg/icon.svg" /></button>
             <div class="list">
                 <small>Фамилия:</small>
@@ -21,17 +21,17 @@
         </div>
         <div class="form_grup" (clickOutside)="clickOutside()">
             <label class="form_label">Название</label>
-            <input (click)="toggleMenu()" class="form_input" type="text" [(ngModel)]="userscount"
+            <input (click)="toggleMenu()" class="form_input" type="text" [(ngModel)]="usersCount"
                 [ngModelOptions]="{standalone: true}" />
-            <div *ngIf="isMenuOpeden" class="popuplist">
-                <small *ngFor="let list of pageList">
+            <div *ngIf="isMenuOpened" class="popuplist">
+                <small *ngFor="let list of users$ | async">
                     <input [formControl]="usernameControl" type="checkbox">{{list.username}}
                 </small>
             </div>
         </div>
         <div>
             <h2>тип</h2>
-            <div *ngFor="let  user of pageList">
+            <div *ngFor="let  user of users$ | async">
                 <input type="checkbox" value="" (change)="onChange($event, user.id)"> {{user.name}}
             </div>
 

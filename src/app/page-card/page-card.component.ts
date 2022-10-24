@@ -19,7 +19,7 @@ export class PageCardComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.pipe(
-      switchMap((params: Params) => this.listService.getById(params['id']))
+      switchMap((params: Params) => this.listService.getUserById(params['id']))
     ).subscribe((user: User) => {
       this.cardUser = user
     })
