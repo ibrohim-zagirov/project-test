@@ -1,7 +1,15 @@
 .bloc {
-    max-width: 1200px;
-    background-color: #E5E5E5;
+    display: flex;
+    min-width: 1200px;
 
+
+
+}
+
+.pageinfo {
+    position: absolute;
+    min-width: 1185px;
+    background-color: #E5E5E5;
 }
 
 .nameList {
@@ -34,9 +42,9 @@
     padding: 32px;
     font-family: sans-serif;
     letter-spacing: 1px;
-    position: fixed;
-    right: 0;
-    top: 0;
+    background-color: #fff;
+
+
 
     .form_grup {
         position: relative;

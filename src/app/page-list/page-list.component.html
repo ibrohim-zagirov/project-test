@@ -1,28 +1,28 @@
 <div class="bloc">
     <div class="container">
-        <h1>SpaceX Ships</h1>
-        <div *ngFor="let list of filteredUsers$ | async | searchPosts: searchStr| paginate: { itemsPerPage: 3, currentPage: p } let idx = index"
-            class="nameList">
-            <button [routerLink]="['/card', list.id]">{{list.name}} <img src="/assets/svg/icon.svg" /></button>
-            <div class="list">
-                <small>Фамилия:</small>
-                <small><a href="#">{{list.username}}</a></small>
-                <small>Почта:</small>
-                <small><a href="#">{{list.email}}</a></small>
+        <div class="pageinfo">
+            <h1>SpaceX Ships</h1>
+            <div *ngFor="let list of filteredUsers$ | async | searchPosts: searchStr| paginate: { itemsPerPage: 5, currentPage: p } let idx = index"
+                class="nameList">
+                <button [routerLink]="['/card', list.id]">{{list.name}} <img src="/assets/svg/icon.svg" /></button>
+                <div class="list">
+                    <small>Фамилия:</small>
+                    <small><a href="#">{{list.username}}</a></small>
+                    <small>Почта:</small>
+                    <small><a href="#">{{list.email}}</a></small>
+                </div>
+                <hr>
             </div>
-            <hr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 
     <form class="form">
         <h2>Фильтры</h2>
         <div class="form_grup">
-            <label class="form_label">Название</label>
             <input class="form_input" type="text" [(ngModel)]="searchStr" name="searchStr">
         </div>
         <div class="form_grup" (clickOutside)="clickOutside()">
-            <label class="form_label">Название</label>
             <input (click)="toggleMenu()" class="form_input" type="text" [(ngModel)]="usersCount"
                 [ngModelOptions]="{standalone: true}" />
             <div *ngIf="isMenuOpened" class="popuplist">
